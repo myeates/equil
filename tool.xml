@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<run>
+    <tool>
+        <title>Nuclear statistical equilibrium calculator.</title>
+        <about>A tool to compute the elemental abundances in a nuclear statistical equilibrium.</about>
+        <command>@tool/mainc @driver</command>
+    </tool>
+    <input>
+        <choice id="equil">
+            <about>
+                <label>Equilibrium</label>
+                <description>The type of equilibrium to be computed.</description>
+            </about>
+            <option id="1">
+                <about>
+                    <label>wse</label>
+                    <description>Nuclear statistical equilibrium with weak equilibrium.</description>
+                </about>
+            </option>
+            <option id="2">
+                <about>
+                    <label>nse</label>
+                    <description>Regular nuclear statistical equilibrium.</description>
+                </about>
+            </option>
+            <option id="3">
+                <about>
+                    <label>qse</label>
+                </about>
+            </option>
+            <default>nse</default>
+        </choice>
+        <number id="t9">
+            <about>
+                <label>T9</label>
+                <description>Temperature in billions of Kelvins at which to compute the equilbrium.</description>
+            </about>
+            <default>5</default>
+            <min>1.e-4</min>
+            <max>100</max>
+        </number>
+        <number id="rho">
+            <about>
+                <label>rho</label>
+                <description>The density at which to compute the equilbrium.</description>
+            </about>
+            <default>1.e5</default>
+            <min>1.e2</min>
+            <max>1.e14</max>
+        </number>
+        <number id="ye">
+            <about>
+                <label>Ye</label>
+                <description>The electron to nucleon ratio for the equilibrium.</description>
+                <enable>input.choice(equil) != "wse"</enable>
+            </about>
+            <default>0.5</default>
+            <min>0.01</min>
+            <max>1</max>
+        </number>
+        <number id="mu_nue_kT">
+            <about>
+                <label>Neutrino chemical potential / kT</label>
+                <description>The neutrino chemical potential divided by kT.</description>
+                <enable>input.choice(equil) == "wse"</enable>
+            </about>
+            <default>0</default>
+            <min>-100</min>
+            <max>100</max>
+        </number>
+        <number id="yh">
+            <about>
+                <label>Yh</label>
+                <description>The number of heavy nuclei (Z &gt;= 6) per nucleon.</description>
+                <enable>input.choice(equil) == "qse"</enable>
+            </about>
+            <default>0.02</default>
+            <min>0.000001</min>
+            <max>0.2</max>
+        </number>
+    </input>
+    <output>
+        <curve id="abund">
+            <about>
+                <label>Equilibrium Abundances</label>
+                <description>The elemental abundances for the equilibrium.</description>
+            </about>
+            <xaxis>
+                <label>Z</label>
+                <description>Atomic number</description>
+            </xaxis>
+            <yaxis>
+                <label>Abundance</label>
+                <description>The elemental abundance per nucleon.</description>
+                <scale>log</scale>
+            </yaxis>
+        </curve>
+    </output>
+</run>
