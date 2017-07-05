@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--////////////////////////////////////////////////////////////////////////////
+// <file type="public">
+//
+//   <license>
+//     Please see the src/README.txt in this distribution for more copyright
+//     and license information.
+//   </license>
+//
+//   <description>
+//     <abstract>
+//       xml file giving the release log
+//     </abstract>
+//     <keywords>
+//       xml, example, releases
+//     </keywords>
+//   </description>
+//
+//   <authors>
+//     <current>
+//       <author userid="mbradle" start_date="2011/05/05" />
+//     </current>
+//     <previous>
+//     </previous>
+//   </authors>
+//
+//   <compatibility>
+//     Tested in mozilla, firefox.
+//   </compatibility>
+//
+// </file>
+/////////////////////////////////////////////////////////////////////////////-->
+
+<release_log type="public">
+
+  <release
+    name = "0.3"
+    date = "2011-11-11"
+  >
+    <new>
+      <item>
+        It is now possible to include a correction functionto the WSE relation
+        among neutrons, protons, and leptons.
+      </item>
+      <item>
+        New examples demonstrate the WSE correction function.
+      </item>
+    </new>
+  </release>
+
+  <release
+    name = "0.2"
+    date = "2011-06-01"
+  >
+    <new>
+      <item>
+        Code is now hosted at SourceForge.net.
+      </item>
+      <item>
+        The examples/ directory now includes a regression test script
+        generator.
+      </item>
+    </new>
+    <reorganization>
+      <item>
+        Examples directory has moved to same level as src/.
+      </item>
+      <item>
+        Example codes now have descriptive names.
+      </item>
+    </reorganization>
+  </release>
+
+  <release
+    name = "0.1"
+    date = "2010-12-27"
+  >
+    <new>
+      <item>
+        Initial Release
+      </item>
+    </new>
+  </release>
+
+</release_log>

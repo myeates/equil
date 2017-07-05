@@ -48,7 +48,7 @@ LIBNUCEQDIR = $(VENDORDIR)/libnuceq/$(LIBNUCEQ_VERSION)/src
 LIBSTATMECHDIR = $(VENDORDIR)/libstatmech/$(LIBSTATMECH_VERSION)/src
 WNMATRIXDIR = $(VENDORDIR)/wn_matrix/$(WNMATRIX_VERSION)/src
 
-BOOST_DIR = ./
+BOOST_DIR = /usr/include/boost
 
 VALGRIND= yes
 PROFILE= no
@@ -146,36 +146,30 @@ $(VENDORDIR)/wn_matrix.tar.gz:
 	wget $(WNMATRIX_URL)/wn_matrix_$(WNMATRIX_VERSION).tar.gz -O $@
 
 $(OBJDIR)/WnMatrix.o: $(VENDORDIR)/wn_matrix.tar.gz 
-	tar xz -C $(VENDORDIR) -f $<
 	$(CC) -c $(WNMATRIXDIR)/WnMatrix.c -o $@
 
 $(VENDORDIR)/libstatmech.tar.gz:
 	wget $(LIBSTATMECH_URL)/libstatmech_$(LIBSTATMECH_VERSION).tar.gz -O $@
 
 $(OBJDIR)/Libstatmech.o: $(VENDORDIR)/libstatmech.tar.gz 
-	tar xz -C $(VENDORDIR) -f $<
 	$(CC) -c $(LIBSTATMECHDIR)/Libstatmech.c -o $@
 
 $(VENDORDIR)/libnuceq.tar.gz:
 	wget $(LIBNUCEQ_URL)/libnuceq_$(LIBNUCEQ_VERSION).tar.gz -O $@
 
 $(OBJDIR)/Libnuceq.o: $(VENDORDIR)/libnuceq.tar.gz $(OBJDIR)/Libnucnet.o
-	tar xz -C $(VENDORDIR) -f $<
 	$(CC) -c $(LIBNUCEQDIR)/Libnuceq.c -o $@
 
 $(VENDORDIR)/libnucnet.tar.gz:
 	wget $(LIBNUCNET_URL)/libnucnet_$(LIBNUCNET_VERSION).tar.gz -O $@
 
 $(OBJDIR)/Libnucnet__Nuc.o: $(VENDORDIR)/libnucnet.tar.gz $(OBJDIR)/WnMatrix.o
-	tar xz -C $(VENDORDIR) -f $<
 	$(CC) -c $(LIBNUCNETDIR)/Libnucnet__Nuc.c -o $@
 
 $(OBJDIR)/Libnucnet__Reac.o: $(VENDORDIR)/libnucnet.tar.gz $(OBJDIR)/WnMatrix.o
-	tar xz -C $(VENDORDIR) -f $<
 	$(CC) -c $(LIBNUCNETDIR)/Libnucnet__Reac.c -o $@
 
 $(OBJDIR)/Libnucnet.o: $(VENDORDIR)/libnucnet.tar.gz $(OBJDIR)/WnMatrix.o
-	tar xz -C $(VENDORDIR) -f $<
 	$(CC) -c $(LIBNUCNETDIR)/Libnucnet.c -o $@
 
 #--------------------------------------------------------------------------
@@ -214,8 +208,6 @@ clean:
 
 clean_dist:
 	rm -fr $(VENDORDIR)
-
-clean_all: clean clean_dist
 
 clean_data:
 	rm -fr $(DATA_DIR)
